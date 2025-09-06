@@ -213,6 +213,19 @@
     align-items: stretch;
     transition: transform 0.28s ease, box-shadow 0.28s ease;
     animation: fadeUp 1s ease;
+
+    img{
+      width: 360px;
+      height: 240px;    
+    }
+
+    a{
+      color: white;
+      padding: 0 12px;
+      &:hover{
+        color: blue;
+      }
+    }
   }
   
   .video-card:hover {
@@ -587,7 +600,7 @@
       </div>
       <nav>
         <div class="links" id="nav_links">
-          <buttons id="nav_home" onclick="showSection('home')">Home</button>
+          <button id="nav_home" onclick="showSection('home')">Home</button>
           <button id="nav_videos" onclick="showSection('videos')">Videos</button>
           <button id="nav_players" onclick="showSection('players')">Players</button>
           <button id="nav_community" onclick="showSection('community')">Community</button>
@@ -920,7 +933,7 @@ const TRANSLATIONS = {
 
 const sampleVideos = [
   {title: 'Bowling Yorker', img: 'https://img.youtube.com/vi/Z63EngdPgzk/maxresdefault.jpg', link: 'https://youtu.be/Z63EngdPgzk'},
-  {title: 'Bowling Speed', img: 'https://www.wikihow.com/images/2/25/Bowl-a-Yorker-Step-12.jpg', link: 'https://youtube.com/shorts/rDjJbQ7Rn-g'},
+  {title: 'Bowling Speed', img: 'https://cdn.comsol.com/wordpress/2015/11/Science-behind-a-cricket-swing.png', link: 'https://youtube.com/shorts/rDjJbQ7Rn-g'},
   {title: 'Control bowling length', img: 'https://img.youtube.com/vi/_HEo4JljXN4/maxresdefault.jpg', link: 'https://youtu.be/_HEo4JljXN4'},
   {title: 'Yorker technique', img: 'https://img.youtube.com/vi/F0_aypvtW8Y/maxresdefault.jpg', link: 'https://youtu.be/F0_aypvtW8Y'}
 ];
