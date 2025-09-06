@@ -6,720 +6,1036 @@
 <title>AI Sports — Polished</title>
 <link rel="icon" href="https://img.freepik.com/premium-psd/sport-icons-many-sports-illustration-isolated-transparent-background_883101-27106.jpg">
 <style>
-  :root{
-    --accent:#ffd700;
-    --muted:#9aa3b2;
-    --bg:#071026;
+  :root {
+    --accent: #ffd700;
+    --muted: #9aa3b2;
+    --bg: #071026;
     --card: rgba(255,255,255,0.04);
     --glass: rgba(255,255,255,0.03);
-    --primary:#0ea5a1;
-    --danger:#aa0707;
-    --radius:12px;
-    --maxw:1200px;
+    --primary: #0ea5a1;
+    --danger: #aa0707;
+    --radius: 12px;
+    --maxw: 1200px;
   }
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
+  
+  * { box-sizing: border-box; }
+  html, body { height: 100%; }
+  
+  body {
+    margin: 0;
     font-family: Inter, "Segoe UI", system-ui, -apple-system, "Helvetica Neue", Arial;
-    background: linear-gradient(180deg,#031025 0%, #08142a 100%);
-    color:#e8eef6;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    padding-bottom:60px;}
-  .container{
-    max-width:var(--maxw);
-    margin:24px auto;
-    padding:0 18px}
-  header{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px}
-  .brand{
-    display:flex;
-    align-items:center;
-    gap:12px }
-  .brand img{
-    width:56px;
-    height:56px;
-    border-radius:10px;
-    object-fit:cover;
-    box-shadow:0 6px 18px rgba(0,0,0,0.5)}
-  .brand h1{
-    font-size:20px;
-    margin:0;
-    color:var(--accent);
-    letter-spacing:0.4px}
-  nav{
-    display:flex;
-    gap:12px;
-    align-items:center}
-  nav .links{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    flex-wrap:wrap}
-  nav button, .btn{
-    background:transparent;
-    border:1px solid rgba(255,255,255,0.06);
-    color:inherit;
-    padding:8px 12px;
-    border-radius:8px;
-    cursor:pointer;
-    transition:all 0.25s ease}
-  nav button:hover,.btn:hover{
-    border-color:var(--accent);
-    color:var(--accent);
-    transform:scale(1.04)}
-  .cta{
-    background:var(--accent);
-    color:#000;
-    border:none;
-    font-weight:600;
-    transition:all 0.25s ease}
-  .cta:hover{
-    background:#000;
-    color:var(--accent);
-    box-shadow:0 0 12px var(--accent);
-    transform:scale(1.06)}
-  .small{
-    font-size:13px;
-    color:var(--muted)}
-  .auth-popup{
-    position:fixed;
-    top:80px;
-    right:24px;
-    width:340px;
-    background:linear-gradient(180deg, rgba(2, 6, 23, 0.973));
-    box-shadow:0 10px 30px rgba(2,6,23,0.6);
-    border-radius:12px;
-    padding:16px;
-    display:none;z-index:60}
-  .auth-popup h3{
-    margin:6px 0 10px;
-    font-size:16px}
-  .auth-popup label{
-    display:block;
-    font-size:13px;
-    color:var(--muted);
-    margin-top:6px}
-  .auth-popup input, .auth-popup select{
-    width:100%;
-    padding:10px;
-    margin:6px 0;
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,0.04);
-    background:transparent;
-    color:inherit}
-  .auth-actions{
-    display:flex;
-    gap:8px;
-    margin-top:8px}
-  .auth-actions button{flex:1}
-  .grid{display:grid;
-    grid-template-columns:1fr 360px;
-    gap:18px;
-    margin-top:18px;
-    align-items:start}
-  @media (max-width:980px)
-  {.grid{
-    grid-template-columns:1fr;
-    padding-bottom:20px}}
-  .content{min-height:60vh}
-  .card{
-    background:var(--card);
-    padding:18px;
-    border-radius:var(--radius);
-    box-shadow:0 6px 18px rgba(2,6,23,0.6);
-    animation:fadeIn 0.9s ease}
-  .section-title{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:12px;
-    margin-bottom:12px}
-  .section-title h2{margin:0;font-size:18px}
-  .videos{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-    gap:12px}
-  .video-card{
-    background:var(--glass);
-    border-radius:10px;
-    overflow:hidden;
-    position:relative;
-    display:flex;
-    flex-direction:column;
-    align-items:stretch;
-    transition:transform 0.28s ease, 
-    box-shadow 0.28s ease;
-    animation:fadeUp 1s ease}
-  .video-card:hover{
-    transform:scale(1.04);
-    box-shadow:0 10px 28px rgba(0,0,0,0.45)}
-  .video-thumb{
-    position:relative;
-    height:170px;
-    flex-shrink:0}
-    .xyz{
-      display: none;
+    background: linear-gradient(180deg, #031025 0%, #08142a 100%);
+    color: #e8eef6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding-bottom: 60px;
+  }
+  
+  .mainContainer { height: 100%; }
+  
+  .container {
+    padding: 18px;
+    height: 100%;
+  }
+  
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+  
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .brand img {
+    width: 56px;
+    height: 56px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.5);
+  }
+  
+  .brand h1 {
+    font-size: 20px;
+    margin: 0;
+    color: var(--accent);
+    letter-spacing: 0.4px;
+  }
+  
+  nav {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+  }
+  
+  nav .links {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  nav button, .btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.06);
+    color: inherit;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  nav button:hover, .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.04);
+  }
+  
+  .cta {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+  
+  .cta:hover {
+    background: #000;
+    color: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+    transform: scale(1.06);
+  }
+  
+  .small {
+    font-size: 13px;
+    color: var(--muted);
+  }
+  
+  .auth-popup {
+    position: fixed;
+    top: 80px;
+    right: 24px;
+    width: 340px;
+    background: linear-gradient(180deg, rgba(2, 6, 23, 0.973));
+    box-shadow: 0 10px 30px rgba(2,6,23,0.6);
+    border-radius: 12px;
+    padding: 16px;
+    display: none;
+    z-index: 60;
+  }
+  
+  .auth-popup h3 {
+    margin: 6px 0 10px;
+    font-size: 16px;
+  }
+  
+  .auth-popup label {
+    display: block;
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+  }
+  
+  .auth-popup input, .auth-popup select {
+    width: 100%;
+    padding: 10px;
+    margin: 6px 0;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.04);
+    background: transparent;
+    color: inherit;
+  }
+  
+  .auth-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .auth-actions button { flex: 1; }
+  
+  .grid {
+    display: flex;
+    gap: 18px;
+    margin-top: 18px;
+    align-items: start;
+  }
+  
+  @media (max-width: 980px) {
+    .grid {
+      grid-template-columns: 1fr;
+      padding-bottom: 20px;
     }
-  .video-thumb img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block}
-  .video-overlay{
-    position:absolute;
-    left:12px;
-    bottom:12px;
-    background:linear-gradient(90deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
-    padding:8px 12px;
-    border-radius:8px;
-    font-weight:700}
-  .video-meta{
-    padding:12px;
-    display:flex;
-    justify-content:flex-end;
-    align-items:center}
-  .watch-link{
-    background:var(--accent);
-    color:#000;
-    padding:8px 12px;
-    border-radius:8px;
-    text-decoration:none;
-    font-weight:700;
-    transition:all 0.25s ease}
-  .watch-link:hover{
-    background:#000;
-    color:var(--accent);
-    box-shadow:0 0 10px var(--accent);
-    transform:scale(1.05)}
-  .players{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:12px}
-  .player-card{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    padding:10px;
-    border-radius:10px;
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-    transition:transform 0.28s ease, box-shadow 0.28s ease;
-    animation:fadeUp 1s ease}
-  .player-card img{
-    width:84px;
-    height:84px;
-    border-radius:8px;
-    object-fit:cover}
-  .player-card:hover{
-    transform:translateY(-6px) scale(1.04);
-    box-shadow:0 10px 24px rgba(0,0,0,0.45)}
-  .composer{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    margin-bottom:12px}
-  .posts{display:flex;flex-direction:column;gap:12px}
-  .post{
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    padding:12px;
-    border-radius:12px}
-  .post .meta{
-    display:flex;
-    justify-content:space-between;
-    align-items:center}
-  .post img,.post video{
-    width:100%;
-    margin-top:8px;
-    border-radius:8px}
-  .post .actions{
-    display:flex;
-    gap:8px;
-    margin-top:8px}
-  .form-row{display:flex;
-    flex-direction:column;
-    gap:6px;
-    margin-bottom:8px}
-  .form-row input,.form-row select{
-    padding:10px;
-    border-radius:8px;
-    border:1px solid rgba(255,255,255,0.04);
-    background:transparent;
-    color:inherit}
-  .back{
-    background:transparent;
-    border:1px solid rgba(255,255,255,0.04);
-    padding:8px 12px;
-    border-radius:8px;
-    color:var(--muted);cursor:pointer}
-  footer{
-    margin-top:28px;
-    text-align:center;
-    color:var(--muted);
-    font-size:13px;
-    padding:18px}
-
-  /* Right side image column */
-  .side{
-    position:relative;
-    min-height:360px;
-    border-radius:var(--radius);
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center}
-  .side img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-    opacity:0.98;
-    filter:contrast(1.02) saturate(1.05)}
-  .side .overlay{position:absolute;
-    left:12px;
-    right:12px;
-    bottom:12px;
-    background:linear-gradient(180deg, rgba(0,0,0,0.15), rgba(0,0,0,0.4));
-    padding:10px;
-    border-radius:10px;
-    color:var(--muted);
-    font-size:13px}
-
-  /* Home hero + highlights */
-  .hero{
-  text-align:center;
-  padding:60px 20px;
-  background:linear-gradient(145deg, rgba(14,165,161,0.06), rgba(255,215,0,0.06));
-  animation:fadeIn 0.9s ease-in-out}
-  .hero-title{
-  font-size:32px;
-  margin:0 0 10px;color:var(--accent);
-  animation:slideDown 1s ease}
-  .hero-subtitle{
-    font-size:18px;
-    margin-bottom:20px;
-    color:#d0d7e2;
-    animation:fadeIn 1.2s ease-in}
-  .hero-btn{
-    font-size:16px;
-    padding:12px 24px;
-    border-radius:30px}
-  .section-heading{
-  margin:0 0 20px;
-  font-size:22px;color:var(--accent);
-  text-align:center}
-  .highlight-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px}
-  .highlight-card{
-    background:var(--glass);
-    padding:20px;
-    border-radius:var(--radius);
-    text-align:center;
-    font-size:15px;
-    transition:transform 0.28s ease, box-shadow 0.28s ease;
-    animation:fadeUp 1s ease}
-  .highlight-card:hover{
-    transform:translateY(-5px) scale(1.03);
-    box-shadow:0 6px 20px rgba(0,0,0,0.4)}
-  .high-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px}
-  .high-card{
-    background:var(--glass);
-    padding:20px;
-    border-radius:var(--radius);
-    text-align:center;
-    font-size:15px;
-    transition:transform 0.28s ease, box-shadow 0.28s ease;
-    animation:fadeUp 1s ease}
-  .high-card:hover{
-    transform:translateY(-5px) scale(1.03);
-    box-shadow:0 6px 20px rgba(0,0,0,0.4)}
-
-  /* small helpers */
-  .row{display:flex;gap:8px;align-items:center}
-  .muted{color:var(--muted);font-size:13px}
-
-  /* Animations */
-  @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
-  @keyframes slideDown{from{opacity:0;transform:translateY(-30px);}to{opacity:1;transform:translateY(0);}}
+  }
+  
+  .content { width: 100%; }
+  
+  .card {
+    background: var(--card);
+    padding: 18px;
+    border-radius: var(--radius);
+    box-shadow: 0 6px 18px rgba(2,6,23,0.6);
+    animation: fadeIn 0.9s ease;
+  }
+  
+  .section-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .section-title h2 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .videos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+  
+  .video-card {
+    background: var(--glass);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    animation: fadeUp 1s ease;
+  }
+  
+  .video-card:hover {
+    transform: scale(1.04);
+    box-shadow: 0 10px 28px rgba(0,0,0,0.45);
+  }
+  
+  .video-thumb {
+    position: relative;
+    height: 170px;
+    flex-shrink: 0;
+  }
+  
+  .video-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  
+  .video-overlay {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    background: linear-gradient(90deg, rgba(0,0,0,0.65), rgba(0,0,0,0.35));
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-weight: 700;
+  }
+  
+  .video-meta {
+    padding: 12px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  
+  .watch-link {
+    background: var(--accent);
+    color: #000;
+    padding: 8px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    transition: all 0.25s ease;
+  }
+  
+  .watch-link:hover {
+    background: #000;
+    color: var(--accent);
+    box-shadow: 0 0 10px var(--accent);
+    transform: scale(1.05);
+  }
+  
+  .players {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  
+  .player-card {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 10px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    animation: fadeUp 1s ease;
+  }
+  
+  .player-card img {
+    width: 84px;
+    height: 84px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .player-card:hover {
+    transform: translateY(-6px) scale(1.04);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.45);
+  }
+  
+  .composer {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  
+  .posts {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .post {
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    padding: 12px;
+    border-radius: 12px;
+  }
+  
+  .post .meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .post img, .post video {
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 8px;
+  }
+  
+  .post .actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  
+  .form-row input, .form-row select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.04);
+    background: transparent;
+    color: inherit;
+  }
+  
+  .back {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.04);
+    padding: 8px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  
+  footer {
+    margin-top: 28px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    padding: 18px;
+  }
+  
+  .hero {
+    text-align: center;
+    padding: 60px 20px;
+    background: linear-gradient(145deg, rgba(14,165,161,0.06), rgba(255,215,0,0.06));
+    animation: fadeIn 0.9s ease-in-out;
+  }
+  
+  .hero-title {
+    font-size: 32px;
+    margin: 0 0 10px;
+    color: var(--accent);
+    animation: slideDown 1s ease;
+  }
+  
+  .hero-subtitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #d0d7e2;
+    animation: fadeIn 1.2s ease-in;
+  }
+  
+  .hero-btn {
+    font-size: 16px;
+    padding: 12px 24px;
+    border-radius: 30px;
+  }
+  
+  .section-heading {
+    margin: 0 0 20px;
+    font-size: 22px;
+    color: var(--accent);
+    text-align: center;
+  }
+  
+  .highlight-grid, .high-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+  }
+  
+  .highlight-card, .high-card {
+    background: var(--glass);
+    padding: 20px;
+    border-radius: var(--radius);
+    text-align: center;
+    font-size: 15px;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+    animation: fadeUp 1s ease;
+  }
+  
+  .highlight-card:hover, .high-card:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+  }
+  
+  .row {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+  
+  .muted {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  
+  .drill-card, .tournament-card {
+    background: var(--glass);
+    padding: 16px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .register-btn {
+    background: var(--accent);
+    color: #000;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+  }
+  
+  .register-btn:hover {
+    background: #000;
+    color: var(--accent);
+    transform: scale(1.05);
+  }
+  
+  .search-container {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 18px;
+  }
+  
+  .search-container input {
+    flex: 1;
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.03);
+    color: #e8eef6;
+    font-size: 14px;
+    transition: all 0.25s ease;
+  }
+  
+  .search-container input:focus {
+    border-color: var(--accent);
+    outline: none;
+    box-shadow: 0 0 8px var(--accent);
+  }
+  
+  .search-container button {
+    padding: 10px 16px;
+    border-radius: 8px;
+    border: none;
+    background: var(--accent);
+    color: #000;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .sports-search-container { 
+    margin: 20px 0; 
+    font-family: Inter, sans-serif; 
+    color: #e8eef6; 
+  }
+  
+  .search-result h2 { 
+    margin: 0 0 8px; 
+    color: var(--accent); 
+  }
+  
+  .video-section { 
+    margin-top: 16px; 
+  }
+  
+  .section-header { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 12px; 
+  }
+  
+  .section-header h3 { 
+    margin: 0; 
+    color: var(--accent); 
+  }
+  
+  .section-header .btn {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 12px;
+    border-radius: 8px;
+    color: var(--muted);
+    cursor: pointer;
+    transition: all 0.25s ease;
+  }
+  
+  .section-header .btn:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    transform: scale(1.04);
+  }
+  
+  .video-row {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes fadeUp {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideDown {
+    from { 
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .tournament-card{
+    img{
+      width:280px;
+    }
+  }
 </style>
 </head>
 <body>
-<div class="container">
+  <div class="container">
+    <header>
+      <div class="brand">
+        <img src="https://static.vecteezy.com/system/resources/previews/023/477/419/non_2x/ai-generative-collection-of-sports-equipment-commonly-sold-at-a-supermarket-circle-label-for-a-sports-goods-free-png.png" alt="logo">
+        <div>
+          <h1 id="ui_brand">AI Sports</h1>
+          <div class="small" id="ui_tagline">Democratizing sports talent with AI</div>
+        </div>
+      </div>
+      <nav>
+        <div class="links" id="nav_links">
+          <button id="nav_home" onclick="showSection('home')">Home</button>
+          <button id="nav_videos" onclick="showSection('videos')">Videos</button>
+          <button id="nav_players" onclick="showSection('players')">Players</button>
+          <button id="nav_community" onclick="showSection('community')">Community</button>
+          <button id="nav_settings" onclick="showSection('settings')">Settings</button>
+          <button id="nav_drills" onclick="showSection('drills')">Drills</button>
+          <button id="nav_tournaments" onclick="showSection('tournaments')">Tournaments</button>
+          <button id="nav_about" onclick="showSection('about')">About</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px">
+          <select id="langSelect" onchange="setLang(this.value)" title="Language">
+            <option value="en">EN</option>
+            <option value="hi">हिंदी</option>
+            <option value="te">తెలుగు</option>
+          </select>
+          <button id="authBtn" class="cta" onclick="openAuth()">Login / Signup</button>
+          <div id="welcome" class="small" style="display:none"></div>
+          <button id="logoutBtn" style="display:none" onclick="logout()">Logout</button>
+        </div>
+      </nav>
+    </header>
 
-  <!-- HEADER -->
-  <header>
-    <div class="brand">
-      <img src="https://static.vecteezy.com/system/resources/previews/023/477/419/non_2x/ai-generative-collection-of-sports-equipment-commonly-sold-at-a-supermarket-circle-label-for-a-sports-goods-free-png.png" alt="logo">
-      <div>
-        <h1 id="ui_brand">AI Sports</h1>
-        <div class="small" id="ui_tagline">Democratizing sports talent with AI</div>
+    <div class="auth-popup" id="authPopup" aria-hidden="true">
+      <h3 id="auth_title">Login / Signup</h3>
+      <label for="auth_name" id="label_name">Full name</label>
+      <input id="auth_name" placeholder="Full name">
+      <label for="auth_email" id="label_email">Email</label>
+      <input id="auth_email" type="email" placeholder="email@example.com">
+      <label for="auth_password" id="label_password">Password</label>
+      <input id="auth_password" type="password" placeholder="Choose a password">
+      <label for="auth_age">Age</label>
+      <input id="auth_age" type="number" placeholder="Age">
+      <label for="auth_height">Height (cm)</label>
+      <input id="auth_height" type="number" placeholder="Height">
+      <label for="auth_weight">Weight (kg)</label>
+      <input id="auth_weight" type="number" placeholder="Weight">
+      <div class="auth-actions">
+        <button class="cta" id="auth_continue" onclick="submitAuth()">Continue</button>
+        <button onclick="closeAuth()">Back</button>
+      </div>
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="back" onclick="skipLogin()">Skip Login</button>
+        <div class="muted" style="align-self:center">or sign up quickly</div>
       </div>
     </div>
-    <nav>
-      <div class="links" id="nav_links">
-        <button id="nav_home" onclick="showSection('home')">Home</button>
-        <button id="nav_videos" onclick="showSection('videos')">Videos</button>
-        <button id="nav_players" onclick="showSection('players')">Players</button>
-        <button id="nav_community" onclick="showSection('community')">Community</button>
-        <button id="nav_features" onclick="showSection('features')">Features</button>
-        <button id="nav_about" onclick="showSection('about')">About</button>
-        <button id="nav_settings" onclick="showSection('settings')">Settings</button>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+      <h2 id="pageHeader">Home</h2>
+      <div class="row">
+        <button id="backtohome" class="back" style="display: none;" onclick="showSection('home')">Back to Home</button>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <select id="langSelect" onchange="setLang(this.value)" title="Language">
-          <option value="en">EN</option>
-          <option value="hi">हिंदी</option>
-          <option value="te">తెలుగు</option>
-        </select>
-        <button id="authBtn" class="cta" onclick="openAuth()">Login / Signup</button>
-        <div id="welcome" class="small" style="display:none"></div>
-        <button id="logoutBtn" style="display:none" onclick="logout()">Logout</button>
-      </div>
-    </nav>
-  </header>
-
-  <!-- AUTH POPUP -->
-  <div class="auth-popup" id="authPopup" aria-hidden="true">
-    <h3 id="auth_title">Login / Signup</h3>
-
-    <label for="auth_name" id="label_name">Full name</label>
-    <input id="auth_name" placeholder="Full name">
-
-    <label for="auth_email" id="label_email">Email</label>
-    <input id="auth_email" type="email" placeholder="email@example.com">
-
-    <label for="auth_password" id="label_password">Password</label>
-    <input id="auth_password" type="password" placeholder="Choose a password">
-
-    <div class="auth-actions">
-      <button class="cta" id="auth_continue" onclick="submitAuth()">Continue</button>
-      <button onclick="closeAuth()">Back</button>
     </div>
-    <div style="display:flex;gap:8px;margin-top:8px">
-      <button class="back" onclick="skipLogin()">Skip Login</button>
-      <div class="muted" style="align-self:center">or sign up quickly</div>
-    </div>
-  </div>
-
-  <!-- MAIN (left content + right side image) -->
-  <main class="grid">
-    <div class="content">
-      <!-- HOME -->
-      <section id="home" class="page" style="display:block">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="home_head">Home</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-
-        <!-- Hero -->
-        <div class="card hero">
-          <h1 class="hero-title" id="hero_title">AI Sports</h1>
-          <p class="hero-subtitle" id="hero_sub">Unlock your true potential with AI-powered sports analysis and talent discovery.</p>
-          <button class="cta hero-btn" onclick="openAuth()" id="cta_get_started">Get Started</button>
-        </div>
-
-        <!-- Highlights -->
-        <div class="card highlights" style="margin-top:18px">
-          <h2 class="section-heading" id="why_head">Why AI Sports?</h2>
-          <div class="highlight-grid">
-            <div class="highlight-card">&#127942; <strong id="h_talent">Talent Index</strong><br><span class="small" id="h_talent_sub">AI calculates your skill score.</span></div>
-            <div class="highlight-card">&#128170; <strong id="h_train">Training Plans</strong><br><span class="small" id="h_train_sub">Personalized routines for growth.</span></div>
-            <div class="highlight-card">&#9889; <strong id="h_injury">Injury Prevention</strong><br><span class="small" id="h_injury_sub">Detect risks and stay safe.</span></div>
-            <div class="highlight-card">&#127757; <strong id="h_scout">Scouting Exposure</strong><br><span class="small" id="h_scout_sub">Showcase your talent globally.</span></div>
+    
+    <main class="grid">
+      <div class="content">
+        <section id="search" class="page" style="display:none">
+          <div class="sports-search-container">
+            <div class="search-container">
+              <input type="text" id="sportsSearchInput" placeholder="Ask any sports question..." title="Type your sports query here">
+              <button class="cta" onclick="performSportsSearch()">Search</button>
+            </div>
+            <div id="searchResult" class="search-result" style="display:none;">
+              <h2>Explanation</h2>
+              <p id="searchExplanation">Here will appear the explanation of your searched sports topic.</p>
+            </div>
+            <div id="relatedVideosSection" class="video-section" style="display:none;">
+              <div class="section-header">
+                <h3>Related Videos</h3>
+                <button class="btn" onclick="seeAllVideos()">See All</button>
+              </div>
+              <div class="video-row" id="relatedVideosRow"></div>
+            </div>
+            <div id="peopleJourneySection" class="video-section" style="display:none; margin-top:20px;">
+              <div class="section-header">
+                <h3>People's Journey</h3>
+                <button class="btn" onclick="seeAllJourney()">See All</button>
+              </div>
+              <div class="video-row" id="peopleJourneyRow"></div>
+            </div>
           </div>
-          <div class="card highlight" style="margin-top:18px">
-          <h2 class="section-head" id="Type_head">Names of Sports:</h2>
-          <div class="high-grid">
-            <div class="high-card"><strong id="h_talent">Cricket</strong></div>
-            <div class="high-card"><strong id="h_train">Foot Ball</strong></div>
-            <div class="high-card"><strong id="h_injury">Kabbadi</strong></div>
-            <div class="high-card"><strong id="h_scout">Badminton</strong></div>
-            <div class="high-card"><strong id="h_train">Riley Race</strong></div>
-            <div class="high-card"><strong id="h_injury">Kho-Kho</strong></div>
-            <div class="high-card"><strong id="h_scout">Basket Ball</strong></div>
-            <div class="high-card"><strong id="h_train">Hockey</strong></div>
-            <div class="high-card"><strong id="h_injury">Javlin throw</strong></div>
-            <div class="high-card"><strong id="h_scout">Table Tennis</strong></div> 
-            And so on...
+        </section>
+
+        <section id="home" class="page" style="display:block">
+          <div class="card hero">
+            <h1 class="hero-title" id="hero_title">AI Sports</h1>
+            <p class="hero-subtitle" id="hero_sub">Unlock your true potential with AI-powered sports analysis and talent discovery.</p>
+            <button class="cta hero-btn" onclick="showSection('search')" id="cta_get_started">Search</button>
           </div>
-        </div>
-      </section>
 
-      <!-- VIDEOS -->
-      <section id="videos" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="videos_head">Videos</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card"><div id="videoGrid" class="videos"></div></div>
-      </section>
-
-      <!-- PLAYERS -->
-      <section id="players" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="players_head">Players</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card"><div id="playersGrid" class="players"></div></div>
-      </section>
-
-      <!-- COMMUNITY -->
-      <section id="community" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="community_head">Community</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card">
-          <div class="composer">
-            <input id="postFile" type="file" accept="image/*,video/*">
-            <input id="postCaption" placeholder="Caption">
-            <button class="cta" onclick="createPost()">Post</button>
+          <div class="card highlights" style="margin-top:18px">
+            <h2 class="section-heading" id="why_head">Why AI Sports?</h2>
+            <div class="highlight-grid">
+              <div class="highlight-card">&#127942; <strong id="h_talent">Talent Index</strong><br><span class="small" id="h_talent_sub">AI calculates your skill score.</span></div>
+              <div class="highlight-card">&#128170; <strong id="h_train">Training Plans</strong><br><span class="small" id="h_train_sub">Personalized routines for growth.</span></div>
+              <div class="highlight-card">&#9889; <strong id="h_injury">Injury Prevention</strong><br><span class="small" id="h_injury_sub">Detect risks and stay safe.</span></div>
+              <div class="highlight-card">&#127757; <strong id="h_scout">Scouting Exposure</strong><br><span class="small" id="h_scout_sub">Showcase your talent globally.</span></div>
+            </div>
+            <div class="card highlight" style="margin-top:18px">
+              <h2 class="section-head" id="Type_head">Names of Sports:</h2>
+              <div class="high-grid">
+                <div class="high-card"><strong>Cricket</strong></div>
+                <div class="high-card"><strong>Foot Ball</strong></div>
+                <div class="high-card"><strong>Kabbadi</strong></div>
+                <div class="high-card"><strong>Badminton</strong></div>
+                <div class="high-card"><strong>Riley Race</strong></div>
+                <div class="high-card"><strong>Kho-Kho</strong></div>
+                <div class="high-card"><strong>Basket Ball</strong></div>
+                <div class="high-card"><strong>Hockey</strong></div>
+                <div class="high-card"><strong>Javelin throw</strong></div>
+                <div class="high-card"><strong>Table Tennis</strong></div> 
+                And so on...
+              </div>
+            </div>
           </div>
-          <div id="postsContainer" class="posts"></div>
-        </div>
-      </section>
+        </section>
 
-      <!-- FEATURES -->
-      <section id="features" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="features_head">Features</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card">
+        <section id="videos" class="page" style="display:none">
+          <div class="card"><div id="videoGrid" class="videos"></div></div>
+        </section>
+
+        <section id="players" class="page" style="display:none">
+          <div class="card"><div id="playersGrid" class="players"></div></div>
+        </section>
+
+        <section id="community" class="page" style="display:none">
+          <div class="card">
+            <div class="composer">
+              <input id="postFile" type="file" accept="image/*,video/*">
+              <input id="postCaption" placeholder="Caption">
+              <button class="cta" onclick="createPost()">Post</button>
+            </div>
+            <div id="postsContainer" class="posts"></div>
+          </div>
+        </section>
+
+        <section id="features" class="page" style="display:none">
+          <div class="card">
             <h3>Talent Index</h3><p>AI calculates your overall skill score by analyzing your sports performance.</p>
             <h3>Injury Risk Detection</h3><p>Detect risks in your body movements and get personalized corrective tips.</p>
             <h3>Predictive Career Path</h3><p>AI suggests the best fit role in your sport (batsman, bowler, striker, goalkeeper, etc.).</p>
             <h3>Personalized Training Plans</h3><p>Custom AI training routines designed for your skill level and sport.</p>
             <h3>Performance Tracking</h3><p>Track improvements over time with AI-powered performance charts.</p>
             <h3>Scouting Recommendations</h3><p>AI connects talented athletes with scouts and recruiters worldwide.</p>
-        </div>
-      </section>
+          </div>
+        </section>
 
-      <!-- ABOUT -->
-      <section id="about" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="about_head">About</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card">
+        <section id="about" class="page" style="display:none">
+          <div class="card">
             <h3>About AI Sports</h3>
-        <p id="about_text">AI Sports is a platform dedicated to transforming the way athletes train, improve, and get recognized. 
-        Our mission is to democratize sports talent discovery by providing affordable, AI-powered tools to athletes at every level.</p>
-        <p>From young players in small towns to professionals striving for global recognition, our platform empowers athletes to measure 
-        their skills, reduce injury risks, and showcase their potential to the world.</p>
-        <p>We combine machine learning, biomechanics, and video analysis to evaluate sports performance with accuracy. 
-        Whether you want to track your progress, compare your stats with elite athletes, or get personalized training plans, AI Sports is here to help.</p>
-        <p>Our vision is simple: <strong>Every talent deserves a chance, no matter where they come from.</strong></p>
-        </div>
-      </section>
+            <p id="about_text">AI Sports is a platform dedicated to transforming the way athletes train, improve, and get recognized. 
+            Our mission is to democratize sports talent discovery by providing affordable, AI-powered tools to athletes at every level.</p>
+            <p>From young players in small towns to professionals striving for global recognition, our platform empowers athletes to measure 
+            their skills, reduce injury risks, and showcase their potential to the world.</p>
+            <p>We combine machine learning, biomechanics, and video analysis to evaluate sports performance with accuracy. 
+            Whether you want to track your progress, compare your stats with elite athletes, or get personalized training plans, AI Sports is here to help.</p>
+            <p>Our vision is simple: <strong>Every talent deserves a chance, no matter where they come from.</strong></p>
+          </div>
+        </section>
 
-      <!-- SETTINGS / PROFILE -->
-      <section id="settings" class="page" style="display:none">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
-          <h2 id="settings_head">Settings</h2>
-          <div class="row"><button class="back" onclick="showSection('home')">Back to Home</button></div>
-        </div>
-        <div class="card">
-          <h3>Profile</h3>
-          <div class="form-row">
-            <label class="small">Full name</label>
-            <input id="profile_name" placeholder="Your name">
-          </div>
-          <div class="form-row">
-            <label class="small">Email</label>
-            <input id="profile_email" placeholder="you@example.com">
-          </div>
-          <div class="form-row">
-            <label class="small">Password</label>
-            <div style="display:flex;gap:8px;align-items:center">
-              <input id="profile_password" placeholder="••••••••" disabled>
-              <button class="btn" onclick="startChangePassword()">Change</button>
+        <section id="settings" class="page" style="display:none">
+          <div class="card">
+            <h3>Profile</h3>
+            <div class="form-row">
+              <label class="small">Full name</label>
+              <input id="profile_name" placeholder="Your name">
             </div>
+            <div class="form-row">
             <label for="auth_age">Age</label>
             <input id="auth_age" type="number" placeholder="Age">
-
+            </div>
+            <div class="form-row">
             <label for="auth_height">Height (cm)</label>
             <input id="auth_height" type="number" placeholder="Height">
-
+            </div>
+            <div class="form-row">
             <label for="auth_weight">Weight (kg)</label>
             <input id="auth_weight" type="number" placeholder="Weight">
+            </div>
+            <div class="form-row">
+              <label class="small">Email</label>
+              <input id="profile_email" placeholder="you@example.com">
+            </div>
+            <div class="form-row">
+              <label class="small">Password</label>
+              <div style="display:flex;gap:8px;align-items:center">
+                <input id="profile_password" placeholder="••••••••" disabled>
+                <button class="btn" onclick="startChangePassword()">Change</button>
+              </div>
+              <div id="changePwdRow" style="display:none;margin-top:8px">
+                <input id="profile_new_password" placeholder="New password">
+                <div style="display:flex;gap:8px;margin-top:6px">
+                  <button class="cta" onclick="saveNewPassword()">Save Password</button>
+                  <button class="back" onclick="cancelChangePassword()">Cancel</button>
+                </div>
+              </div>
+            </div>
+            <div style="display:flex;gap:8px;margin-top:6px">
+              <button class="cta" onclick="saveProfile()">Save Profile</button>
+              <button class="back" onclick="clearProfile()">Clear Profile</button>
+            </div>
+            <div id="profile_msg" class="muted" style="margin-top:8px"></div>
+          </div>
+        </section>
 
-            <div id="changePwdRow" style="display:none;margin-top:8px">
-              <input id="profile_new_password" placeholder="New password">
-              <div style="display:flex;gap:8px;margin-top:6px">
-                <button class="cta" onclick="saveNewPassword()">Save Password</button>
-                <button class="back" onclick="cancelChangePassword()">Cancel</button>
+        <section id="drills" class="page" style="display:none">
+          <div class="drill-card">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/KFE6HaIfaMU/maxresdefault.jpg" alt="Video 1">
+              <div class="video-overlay">Video 1</div>
+            </div>
+            <div class="video-meta">
+              <a class="watch-link" href="https://youtu.be/KFE6HaIfaMU" target="_blank">Watch</a>
+            </div>
+            <h3>Cricket Drill</h3>
+            <p>Improve your sprint speed</p>
+          </div>
+          <div class="drill-card">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/d01bxcf-VhQ/maxresdefault.jpg" alt="Video 2">
+              <div class="video-overlay">Video 2</div>
+            </div>
+            <div class="video-meta">
+              <a class="watch-link" href="https://youtu.be/d01bxcf-VhQ" target="_blank">Watch</a>
+            </div>
+            <h3>Football Drill</h3>
+            <p>Enhance agility and quick turns</p>
+          </div>
+          <div class="drill-card">
+            <div class="video-thumb">
+              <img src="https://img.youtube.com/vi/BQfXztjZcIA/maxresdefault.jpg" alt="Video 3">
+              <div class="video-overlay">Video 3</div>
+            </div>
+            <div class="video-meta">
+              <a class="watch-link" href="https://youtu.be/BQfXztjZcIA" target="_blank">Watch</a>
+            </div>
+            <h3>Badminton Drill</h3>
+            <p>Build muscular strength</p>
+          </div>
+        </section>
+
+        <section id="tournaments" class="page" style="display:none">
+          <div class="card" id="tournamentsContainer">
+            <div class="card high-grid">
+              <div class="tournament-card">
+                <img src="https://png.pngtree.com/png-clipart/20220429/original/pngtree-football-league-tournament-poster-png-image_7567676.png" alt="Champions League">
+                <h3>Champions League</h3>
+                <p>Date: 2025-11-05</p>
+                <button class="register-btn">Register</button>
+              </div>
+              <div class="tournament-card">
+                <img src="https://as1.ftcdn.net/jpg/05/18/57/26/1000_F_518572648_PZaJe6niV88HDrbx39X6TOKrU4ud2L90.jpg" alt="World Cup">
+                <h3>National League </h3>
+                <p>Date: 2025-12-20</p>
+                <button class="register-btn">Register</button>
+              </div>
+              <div class="tournament-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6q60K1CDWV0Yx9Ago5y62AeYDMefoTKGskWcP_fsrSqLxXrnfaJbCZZYTCc1tyAA7pEQ&usqp=CAU" alt="National Championship">
+                <h3>National Championship</h3>
+                <p>Date: 2025-10-10</p>
+                <button class="register-btn">Register</button>
               </div>
             </div>
           </div>
-          <div style="display:flex;gap:8px;margin-top:6px">
-            <button class="cta" onclick="saveProfile()">Save Profile</button>
-            <button class="back" onclick="clearProfile()">Clear Profile</button>
-          </div>
-          <div id="profile_msg" class="muted" style="margin-top:8px"></div>
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </main>
 
-    <!-- RIGHT SIDE IMAGE (shared) -->
-    <aside class="side" id="sideImage">
-      <img id="side_img" src="https://picsum.photos/seed/sports/800/800" alt="side visual">
-      <div class="overlay" id="side_overlay">Tip: Sign up to save your profile and posts.</div>
-    </aside>
-  </main>
-
-  <footer>© 2025 AI Sports</footer>
-</div>
+    <footer>
+      <p>VictoryHub &copy; All Rights Reserved | Democratizing sports talent with AI.</p>
+    </footer>
+  </div>
 
 <script>
-/* ---------------------------
-   Data (videos & players)
-   --------------------------- */
-const VIDEOS=[
-  {id:'PWDQpEBq_pU',title:'Video 1'},
-  {id:'wnHW6o8WMas',title:'Video 2'},
-  {id:'FUfKMcanxfk',title:'Video 3'},
-  {id:'K5U-97wv_Ug',title:'Video 4'},
-  {id:'w-0H7G5XavM',title:'Video 5'}
+const VIDEOS = [
+  {id: 'PWDQpEBq_pU', title: 'Video 1'},
+  {id: 'wnHW6o8WMas', title: 'Video 2'},
+  {id: 'FUfKMcanxfk', title: 'Video 3'},
+  {id: 'K5U-97wv_Ug', title: 'Video 4'},
+  {id: 'w-0H7G5XavM', title: 'Video 5'}
 ];
 
-const PLAYERS=[
-  {name:'Virat Kohli',img:'https://documents.iplt20.com/ipl/IPLHeadshot2025/2.png',link:'https://www.qnetindia.net/success-articles/success-tips-articles/dedication-and-perseverance-that-drive-virat-kohli/'},
-  {name:'MS Dhoni',img:'https://documents.iplt20.com/ipl/IPLHeadshot2025/57.png',link:'https://www.greaterkashmir.com/opinion/ms-dhoni-passion-hard-work-and-patience/'},
-  {name:'Cristiano Ronaldo',img:'https://upload.wikimedia.org/wikipedia/commons/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg',link:'https://www.tntsports.co.uk/football/cristiano-ronaldo-hard-work-is-vital-to-my-success_sto5324288/story.shtml'},
-  {name:'Lionel Messi',img:'https://upload.wikimedia.org/wikipedia/commons/3/3d/Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-055.jpg',link:'https://augmentedutech.com/lionel-messi-a-journey-of-grit-and-glory/'},
-  {name:'PT Usha',img:'https://oca.asia/media/cache/80/ee/80ee2a6e04c475b65cc4e4e90701616b.jpg',link:'https://www.kreedon.com/the-golden-girl-of-indian-athletics-pt-usha-inspiring-story'}
+const PLAYERS = [
+  {name: 'Virat Kohli', img: 'https://documents.iplt20.com/ipl/IPLHeadshot2025/2.png', link: 'https://www.qnetindia.net/success-articles/success-tips-articles/dedication-and-perseverance-that-drive-virat-kohli/'},
+  {name: 'MS Dhoni', img: 'https://documents.iplt20.com/ipl/IPLHeadshot2025/57.png', link: 'https://www.greaterkashmir.com/opinion/ms-dhoni-passion-hard-work-and-patience/'},
+  {name: 'Cristiano Ronaldo', img: 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Cristiano_Ronaldo_playing_for_Al_Nassr_FC_against_Persepolis%2C_September_2023_%28cropped%29.jpg', link: 'https://www.tntsports.co.uk/football/cristiano-ronaldo-hard-work-is-vital-to-my-success_sto5324288/story.shtml'},
+  {name: 'Lionel Messi', img: 'https://upload.wikimedia.org/wikipedia/commons/3/3d/Lionel_Messi_NE_Revolution_Inter_Miami_7.9.25-055.jpg', link: 'https://augmentedutech.com/lionel-messi-a-journey-of-grit-and-glory/'},
+  {name: 'PT Usha', img: 'https://oca.asia/media/cache/80/ee/80ee2a6e04c475b65cc4e4e90701616b.jpg', link: 'https://www.kreedon.com/the-golden-girl-of-indian-athletics-pt-usha-inspiring-story'}
 ];
 
-/* ---------------------------
-   Translations (EN / HI / TE)
-   Expand if you want more text translated
-   --------------------------- */
+const DRILLS = [
+  {title: 'Speed Drill', desc: 'Improve your sprint speed', img: 'https://cdn-icons-png.flaticon.com/512/747/747310.png'},
+  {title: 'Agility Drill', desc: 'Enhance agility and quick turns', img: ''},
+  {title: 'Strength Drill', desc: 'Build muscular strength', img: ''}
+];
+
+const TOURNAMENTS = [
+  {name: 'Champions League', date: '2025-11-05', img: 'https://img.pikbest.com/origin/05/95/16/83NpIkbEsT6nT.png!sw800'},
+  {name: 'National League', date: '2025-12-20', img: 'https://as1.ftcdn.net/jpg/05/18/57/26/1000_F_518572648_PZaJe6niV88HDrbx39X6TOKrU4ud2L90.jpg'},
+  {name: 'National Championship', date: '2025-10-10', img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6q60K1CDWV0Yx9Ago5y62AeYDMefoTKGskWcP_fsrSqLxXrnfaJbCZZYTCc1tyAA7pEQ&usqp=CAU'}
+];
+
 const TRANSLATIONS = {
-  en:{
-    brand:"AI Sports",tagline:"Democratizing sports talent with AI",
-    home:"Home",videos:"Videos",players:"Players",community:"Community",features:"Features",about:"About",settings:"Settings",
-    hero_title:"AI Sports",hero_sub:"Unlock your true potential with AI-powered sports analysis and talent discovery.",
-    get_started:"Get Started",why:"Why AI Sports?",back_home:"Back to Home",
-    profile_saved:"Profile saved.",
-    auth_title:"Login / Signup",label_name:"Full name",label_email:"Email",label_password:"Password",
-    skip:"Skip Login",post_placeholder:"Caption"
+  en: {
+    brand: "AI Sports", tagline: "Democratizing sports talent with AI",
+    home: "Home", videos: "Videos", players: "Players", community: "Community", features: "Features", about: "About", settings: "Settings", drills: "Drills", tournaments: "Tournaments",
+    hero_title: "AI Sports", hero_sub: "Unlock your true potential with AI-powered sports analysis and talent discovery.",
+    get_started: "Get Started", why: "Why AI Sports?", back_home: "Back to Home",
+    profile_saved: "Profile saved.",
+    auth_title: "Login / Signup", label_name: "Full name", label_email: "Email", label_password: "Password",
+    skip: "Skip Login", post_placeholder: "Caption"
   },
-  hi:{
-    brand:"एआई स्पोर्ट्स",tagline:"एआई के साथ खेल प्रतिभा को सबके लिए उपलब्ध कराना",
-    home:"होम",videos:"वीडियो",players:"खिलाड़ी",community:"समुदाय",features:"विशेषताएं",about:"के बारे में",settings:"सेटिंग्स",
-    hero_title:"एआई स्पोर्ट्स",hero_sub:"एआई-पावर्ड खेल विश्लेषण के साथ अपनी असली क्षमता खोलें।",
-    get_started:"शुरू करें",why:"क्यों AI Sports?",back_home:"होम पर लौटें",
-    profile_saved:"प्रोफ़ाइल सहेजी गई।",
-    auth_title:"लॉगिन / साइनअप",label_name:"पूरा नाम",label_email:"ईमेल",label_password:"पासवर्ड",
-    skip:"लॉगिन छोड़ें",post_placeholder:"कैप्शन"
+  hi: {
+    brand: "एआई स्पोर्ट्स", tagline: "एआई के साथ खेल प्रतिभा को सबके लिए उपलब्ध कराना",
+    home: "होम", videos: "वीडियो", players: "खिलाड़ी", community: "समुदाय", features: "विशेषताएं", about: "के बारे में", settings: "सेटिंग्स", drills: "ड्रिल्स", tournaments: "टूर्नामेंट्स",
+    hero_title: "एआई स्पोर्ट्स", hero_sub: "एआई-पावर्ड खेल विश्लेषण के साथ अपनी असली क्षमता खोलें।",
+    get_started: "शुरू करें", why: "क्यों AI Sports?", back_home: "होम पर लौटें",
+    profile_saved: "प्रोफ़ाइल सहेजी गई।",
+    auth_title: "लॉगिन / साइनअप", label_name: "पूरा नाम", label_email: "ईमेल", label_password: "पासवर्ड",
+    skip: "लॉगिन छोड़ें", post_placeholder: "कैप्शन"
   },
-  te:{
-    brand:"ఎఐ స్పోర్ట్స్",tagline:"ఎఐ తో క్రీడా ప్రతిభ అందరికీ",
-    home:"హోమ్",videos:"వీడియోలు",players:"ఆటగాళ్లు",community:"సమాజం",features:"లక్షణాలు",about:"గురించి",settings:"సెట్టింగ్స్",
-    hero_title:"ఎఐ స్పోర్ట్స్",hero_sub:"ఎఐ ఆధారిత స్పోర్ట్స్ విశ్లేషణతో మీ నిజమైన సామర్థ్యాన్ని ఆకస్మికంగా విడుదల చేయండి.",
-    get_started:"ప్రారంభించండి",why:"ఎందుకు AI Sports?",back_home:"హోమ్‌కు తిరిగి",
-    profile_saved:"ప్రొఫైల్ సేవ్ అయింది.",
-    auth_title:"లాగిన్ / సైన్ అప్త్",label_name:"పూర్తి పేరు",label_email:"ఇమెయిల్",label_password:"పాస్‌వర్డ్",
-    skip:"లాగిన్ కంపించు",post_placeholder:"శీర్షిక"
+  te: {
+    brand: "ఎఐ స్పోర్ట్స్", tagline: "ఎఐ తో క్రీడా ప్రతిభ అందరికీ",
+    home: "హోమ్", videos: "వీడియోలు", players: "ఆటగాళ్లు", community: "సమాజం", features: "లక్షణాలు", about: "గురించి", settings: "సెట్టింగ్స్", drills: "డ్రిల్ల్స్", tournaments: "టోర్నమెంట్స్",
+    hero_title: "ఎఐ స్పోర్ట్స్", hero_sub: "ఎఐ ఆధారిత స్పోర్ట్స్ విశ్లేషణతో మీ నిజమైన సామర్థ్యాన్ని ఆకస్మికంగా విడుదల చేయండి.",
+    get_started: "ప్రారంభించండి", why: "ఎందుకు AI Sports?", back_home: "హోమ్‌కు తిరిగి",
+    profile_saved: "ప్రొఫైల్ సేవ్ అయింది.",
+    auth_title: "లాగిన్ / సైన్ అప్త్", label_name: "పూర్తి పేరు", label_email: "ఇమెయిల్", label_password: "పాస్‌వర్డ్",
+    skip: "లాగిన్ కంపించు", post_placeholder: "శీర్షిక"
   }
 };
 
-/* ---------------------------
-   UI / Language / Side images
-   --------------------------- */
-function applyTranslations(lang){
+const sampleVideos = [
+  {title: 'Bowling Yorker', img: 'https://img.youtube.com/vi/Z63EngdPgzk/maxresdefault.jpg', link: 'https://youtu.be/Z63EngdPgzk'},
+  {title: 'Bowling Speed', img: 'https://www.wikihow.com/images/2/25/Bowl-a-Yorker-Step-12.jpg', link: 'https://youtube.com/shorts/rDjJbQ7Rn-g'},
+  {title: 'Control bowling length', img: 'https://img.youtube.com/vi/_HEo4JljXN4/maxresdefault.jpg', link: 'https://youtu.be/_HEo4JljXN4'},
+  {title: 'Yorker technique', img: 'https://img.youtube.com/vi/F0_aypvtW8Y/maxresdefault.jpg', link: 'https://youtu.be/F0_aypvtW8Y'}
+];
+
+const sampleJourneys = [
+  {title: 'Vishal', img: 'https://img.youtube.com/vi/xDpqzzS48Is/maxresdefault.jpg', link: 'https://youtu.be/xDpqzzS48Is'},
+  {title: 'Top rated', img: 'https://img.youtube.com/vi/l2l6BY2EtMM/maxresdefault.jpg', link: 'https://youtu.be/l2l6BY2EtMM'},
+  {title: 'Kapil Dev', img: 'https://img.youtube.com/vi/QxPrV-8rHdY/maxresdefault.jpg', link: 'https://youtu.be/QxPrV-8rHdY'},
+  {title: 'Most liked', img: 'https://img.youtube.com/vi/W7ai_RwBmfk/maxresdefault.jpg', link: 'https://youtu.be/W7ai_RwBmfk'}
+];
+
+let currentSection = 'home';
+
+function performSportsSearch() {
+  const query = document.getElementById('sportsSearchInput').value.trim();
+  if (!query) {
+    alert("Please type a question to search!");
+    return;
+  }
+
+  document.getElementById('searchResult').style.display = 'block';
+  document.getElementById('searchExplanation').textContent = `A yorker is a delivery aimed at the batsman's feet.
+Hold the ball firmly and release it with a straight arm.
+Focus on pitching it just at the base of the stumps for maximum effect.`;
+
+  const rvRow = document.getElementById('relatedVideosRow');
+  rvRow.innerHTML = '';
+  sampleVideos.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `<a href="${v.link}" target="_blank"><img src="${v.img}" alt="${v.title}"><p>${v.title}</p></a>`;
+    rvRow.appendChild(card);
+  });
+  document.getElementById('relatedVideosSection').style.display = 'block';
+
+  const pjRow = document.getElementById('peopleJourneyRow');
+  pjRow.innerHTML = '';
+  sampleJourneys.forEach(v => {
+    const card = document.createElement('div');
+    card.className = 'video-card';
+    card.innerHTML = `<a href="${v.link}" target="_blank"><img src="${v.img}" alt="${v.title}"><p>${v.title} Journey</p></a>`;
+    pjRow.appendChild(card);
+  });
+  document.getElementById('peopleJourneySection').style.display = 'block';
+}
+
+function seeAllVideos() { alert("Redirect to all related videos"); }
+function seeAllJourney() { alert("Redirect to all people's journey videos"); }
+
+function applyTranslations(lang) {
   const t = TRANSLATIONS[lang] || TRANSLATIONS.en;
-  // header
   document.getElementById('ui_brand').textContent = t.brand;
   document.getElementById('ui_tagline').textContent = t.tagline;
   document.getElementById('nav_home').textContent = t.home;
   document.getElementById('nav_videos').textContent = t.videos;
   document.getElementById('nav_players').textContent = t.players;
+  document.getElementById('nav_drills') && (document.getElementById('nav_drills').textContent = t.drills);
+  document.getElementById('nav_tournaments') && (document.getElementById('nav_tournaments').textContent = t.tournaments);
   document.getElementById('nav_community').textContent = t.community;
   document.getElementById('nav_features').textContent = t.features;
   document.getElementById('nav_about').textContent = t.about;
   document.getElementById('nav_settings').textContent = t.settings;
 
-  // hero & home
   document.getElementById('hero_title').textContent = t.hero_title;
   document.getElementById('hero_sub').textContent = t.hero_sub;
   document.getElementById('cta_get_started').textContent = t.get_started;
   document.getElementById('why_head').textContent = t.why;
 
-  // auth labels
   document.getElementById('auth_title').textContent = t.auth_title;
   document.getElementById('label_name').textContent = t.label_name;
   document.getElementById('label_email').textContent = t.label_email;
   document.getElementById('label_password').textContent = t.label_password;
 
-  // back buttons text (they're plain buttons; keep same text)
-  // placeholders
   document.getElementById('postCaption') && (document.getElementById('postCaption').placeholder = t.post_placeholder || 'Caption');
-
-  // Save message text may use translations
-  // update side overlay text if needed
-  updateSideForSection(currentSection);
 }
 
-function setLang(lang){
+function setLang(lang) {
   localStorage.setItem('aisports_lang', lang);
   applyTranslations(lang);
   document.documentElement.lang = lang;
 }
 
-/* ---------------------------
-   Side image per section
-   --------------------------- */
-const SIDE_IMAGES = {
-  home:{src:'https://thebridge.in/wp-content/uploads/2020/01/Imtiaz-2-1.jpg', text:'Nothing can stop you'},
-  videos:{src:'https://www.squadlocker.com/hs-fs/hubfs/1.png?width=3200&name=1.png', text:'You can do it'},
-  players:{src:'https://kajabi-storefronts-production.kajabi-cdn.com/kajabi-storefronts-production/file-uploads/blogs/35480/images/c5b6b5-52c7-5f0d-cb55-83dd341cf20a_aaron_rodgers_quote.webp', text:'Top players and inspiring stories.'},
-  community:{src:'https://cdn3.geckoandfly.com/wp-content/uploads/2016/05/sports-teamwork-sportsmanship-quotes-09.jpg', text:'Share your moments with the community.'},
-  features:{src:'https://m.media-amazon.com/images/I/81yMRB7FZsL._UF894,1000_QL80_.jpg', text:'Explore AI features to improve.'},
-  about:{src:'https://t4.ftcdn.net/jpg/06/30/33/75/360_F_630337577_WVfnL5SRSma7TByVvahmCM1eE6jbVkpQ.jpg', text:'Learn about our mission.'},
-  settings:{src:'https://img.freepik.com/free-photo/sports-tools_53876-138077.jpg?semt=ais_incoming&w=740&q=80', text:'Edit your profile and preferences.'}
-};
-
-function updateSideForSection(section){
-  const img = document.getElementById('side_img');
-  const overlay = document.getElementById('side_overlay');
-  const key = section in SIDE_IMAGES ? section : 'home';
-  img.src = SIDE_IMAGES[key].src;
-  overlay.textContent = SIDE_IMAGES[key].text;
-}
-
-/* ---------------------------
-   Show section (also update side image)
-   --------------------------- */
-let currentSection = 'home';
-function showSection(id){
+function showSection(id) {
   currentSection = id;
-  document.querySelectorAll('.page').forEach(p=>p.style.display='none');
-  const target = document.getElementById(id);
-  if(target) target.style.display = 'block';
-  updateSideForSection(id);
+  document.querySelectorAll('.page').forEach(p => p.style.display = 'none');
+  const target = document.getElementById(id)
+  if (target) target.style.display = 'block';
+  
+  if (id === 'tournaments') loadTournaments();
+  
+  const backtohome = document.getElementById("backtohome");
+  if (id === "home") {
+    if (backtohome) backtohome.style.display = 'none';
+  } else {
+    if (backtohome) backtohome.style.display = 'block';
+  }
+  
+  const pageHeader = document.getElementById("pageHeader");
+  pageHeader.innerHTML = capitalizeFirstLetter(id);
 }
 
-/* ---------------------------
-   Videos & Players render
-   --------------------------- */
-function loadVideos(){
-  const c=document.getElementById('videoGrid');
-  c.innerHTML='';
-  VIDEOS.forEach(v=>{
-    const div=document.createElement('div');
-    div.className='video-card';
-    div.innerHTML=`
+function capitalizeFirstLetter(str) {
+  if (typeof str !== 'string' || str.length === 0) {
+    return str;
+  }
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function loadVideos() {
+  const c = document.getElementById('videoGrid');
+  c.innerHTML = '';
+  VIDEOS.forEach(v => {
+    const div = document.createElement('div');
+    div.className = 'video-card';
+    div.innerHTML = `
       <div class="video-thumb">
         <img src="https://img.youtube.com/vi/${v.id}/hqdefault.jpg" alt="${v.title}">
         <div class="video-overlay">${v.title}</div>
@@ -731,12 +1047,12 @@ function loadVideos(){
   });
 }
 
-function loadPlayers(){
-  const c=document.getElementById('playersGrid');
-  c.innerHTML='';
-  PLAYERS.forEach(p=>{
-    const div=document.createElement('div');
-    div.className='player-card';
+function loadPlayers() {
+  const c = document.getElementById('playersGrid');
+  c.innerHTML = '';
+  PLAYERS.forEach(p => {
+    const div = document.createElement('div');
+    div.className = 'player-card';
     div.innerHTML = `
       <img src="${p.img}" alt="${p.name}">
       <div>
@@ -749,171 +1065,174 @@ function loadPlayers(){
   });
 }
 
-/* ---------------------------
-   Auth / Profile
-   - profile stored as object in localStorage key 'aisports_profile'
-     { name, email, password }  (password stored for demo; displayed masked)
-   --------------------------- */
+function loadTournaments() {
+  const container = document.getElementById('tournamentsContainer');
+  container.innerHTML = '';
 
-function openAuth(){
-  // opens popup and fills with profile if exists
-  const profile = JSON.parse(localStorage.getItem('aisports_profile') || 'null');
-  document.getElementById('authPopup').style.display='block';
-  document.getElementById('authPopup').setAttribute('aria-hidden','false');
-  document.getElementById('auth_name').value = profile?.name || '';
-  document.getElementById('auth_email').value = profile?.email || '';
-  document.getElementById('auth_password').value = '';
+  TOURNAMENTS.forEach(t => {
+    const card = document.createElement('div');
+    card.className = 'tournament-card';
+    card.innerHTML = `
+      <img src="${t.img}" alt="${t.name}">
+      <h3>${t.name}</h3>
+      <p>Date: ${t.date}</p>
+      <button class="register-btn" onclick="registerTournament('${t.name}')">Register</button>
+    `;
+    container.appendChild(card);
+  });
 }
-function closeAuth(){
-  document.getElementById('authPopup').style.display='none';
-  document.getElementById('authPopup').setAttribute('aria-hidden','true');
+
+function registerTournament(name) {
+  alert(`You have registered for ${name}!`);
 }
-function submitAuth(){
-  const name = document.getElementById('auth_name').value.trim();
-  const email = document.getElementById('auth_email').value.trim();
-  const pwd = document.getElementById('auth_password').value;
-  const age = document.getElementById('profile_age').value;
-  const height = document.getElementById('profile_height').value;
-  const weight = document.getElementById('profile_weight').value;
-  if(!name){ alert('Please enter your name'); return; }
-  // store profile object
-  const profile = { name, email: email || '', password: pwd || '' };
+
+function openAuth() {
+  document.getElementById('authPopup').style.display = 'block';
+}
+
+function closeAuth() {
+  document.getElementById('authPopup').style.display = 'none';
+}
+
+function submitAuth() {
+  const name = document.getElementById('auth_name').value;
+  const email = document.getElementById('auth_email').value;
+  const password = document.getElementById('auth_password').value;
+  
+  if (!name || !email || !password) {
+    alert('Please fill all fields');
+    return;
+  }
+  
+  const profile = { name, email, password, age, height, weight };
   localStorage.setItem('aisports_profile', JSON.stringify(profile));
-  // apply user
+  
   document.getElementById('welcome').textContent = 'Hi, ' + name;
   document.getElementById('welcome').style.display = 'block';
   document.getElementById('authBtn').style.display = 'none';
   document.getElementById('logoutBtn').style.display = 'inline';
-  closeAuth();
-  // update settings inputs
+  
   populateProfileIntoSettings();
-}
-
-function skipLogin(){
-  // hide popup; user continues as guest; no profile created
   closeAuth();
-  // show small message
-  alert('You are continuing as a guest. You can sign up later from the Settings.');
 }
 
-/* ---------------------------
-   Logout
-   --------------------------- */
-function logout(){
-  // simply remove displayed welcome; keep profile in localStorage (we're not deleting profile on logout)
-  document.getElementById('welcome').style.display='none';
-  document.getElementById('authBtn').style.display='inline';
-  document.getElementById('logoutBtn').style.display='none';
+function skipLogin() {
+  closeAuth();
 }
 
-/* ---------------------------
-   Create post
-   --------------------------- */
-function createPost(){
-  const fileEl = document.getElementById('postFile');
-  const file = fileEl.files[0];
-  const cap = document.getElementById('postCaption').value.trim();
-  if(!file){ alert('Pick a file to post'); return; }
-  const url = URL.createObjectURL(file);
-  const el = document.createElement('div');
-  el.className = 'post';
-  const time = new Date().toLocaleString();
-  const author = JSON.parse(localStorage.getItem('aisports_profile') || 'null')?.name || 'Guest';
-  let media = '';
-  if(file.type.startsWith('video')) media = `<video controls src="${url}"></video>`;
-  else media = `<img src="${url}">`;
-  el.innerHTML = `<div class="meta"><strong>${author}</strong><span class="small">${time}</span></div>${cap?'<p>'+escapeHtml(cap)+'</p>':''}${media}<div class="actions"><button>❤️</button><button>💬</button><button>↗️</button></div>`;
-  document.getElementById('postsContainer').prepend(el);
-  fileEl.value = '';
-  document.getElementById('postCaption').value = '';
+function logout() {
+  localStorage.removeItem('aisports_profile');
+  document.getElementById('welcome').style.display = 'none';
+  document.getElementById('authBtn').style.display = 'inline';
+  document.getElementById('logoutBtn').style.display = 'none';
 }
 
-/* small helper to avoid HTML injection in captions */
-function escapeHtml(unsafe) {
-  return unsafe.replace(/[&<"'>]/g, function(m){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m];});
-}
-
-/* ---------------------------
-   Settings: load/edit/save profile
-   --------------------------- */
-function populateProfileIntoSettings(){
+function populateProfileIntoSettings() {
   const profile = JSON.parse(localStorage.getItem('aisports_profile') || 'null');
-  if(profile){
+  if (profile) {
     document.getElementById('profile_name').value = profile.name || '';
     document.getElementById('profile_email').value = profile.email || '';
-    document.getElementById('profile_password').value = maskPassword(profile.password || '');
-  } else {
-    document.getElementById('profile_name').value = '';
-    document.getElementById('profile_email').value = '';
-    document.getElementById('profile_password').value = '';
   }
 }
 
-function saveProfile(){
-  const name = document.getElementById('profile_name').value.trim();
-  const email = document.getElementById('profile_email').value.trim();
-  const existing = JSON.parse(localStorage.getItem('aisports_profile') || 'null') || {};
-  const updated = { ...existing, name, email };
-  localStorage.setItem('aisports_profile', JSON.stringify(updated));
-  document.getElementById('profile_msg').textContent = TRANSLATIONS[localStorage.getItem('aisports_lang')||'en'].profile_saved || 'Profile saved.';
-  // update header welcome and auth button state
-  if(name){
-    document.getElementById('welcome').textContent = 'Hi, ' + name;
-    document.getElementById('welcome').style.display = 'block';
-    document.getElementById('authBtn').style.display = 'none';
-    document.getElementById('logoutBtn').style.display = 'inline';
+function saveProfile() {
+  const name = document.getElementById('profile_name').value;
+  const email = document.getElementById('profile_email').value;
+  
+  if (!name || !email) {
+    alert('Please fill all required fields');
+    return;
   }
-  setTimeout(()=>document.getElementById('profile_msg').textContent = '', 2500);
+  
+  const profile = JSON.parse(localStorage.getItem('aisports_profile') || '{}');
+  profile.name = name;
+  profile.email = email;
+  localStorage.setItem('aisports_profile', JSON.stringify(profile));
+  
+  document.getElementById('profile_msg').textContent = 'Profile saved successfully';
+  setTimeout(() => {
+    document.getElementById('profile_msg').textContent = '';
+  }, 3000);
 }
 
-function clearProfile(){
-  if(confirm('Clear stored profile? This removes saved name, email, and password.')){
-    localStorage.removeItem('aisports_profile');
-    populateProfileIntoSettings();
-    document.getElementById('profile_msg').textContent = 'Profile cleared.';
-    document.getElementById('welcome').style.display = 'none';
-    document.getElementById('authBtn').style.display = 'inline';
-    document.getElementById('logoutBtn').style.display = 'none';
-    setTimeout(()=>document.getElementById('profile_msg').textContent = '', 2000);
-  }
+function clearProfile() {
+  document.getElementById('profile_name').value = '';
+  document.getElementById('profile_email').value = '';
 }
 
-/* Password handling (masked view, change flow) */
-function maskPassword(pwd){
-  if(!pwd) return '';
-  return '•'.repeat(Math.min(10, pwd.length)); // mask up to 10 dots
-}
-
-function startChangePassword(){
+function startChangePassword() {
   document.getElementById('changePwdRow').style.display = 'block';
-  document.getElementById('profile_new_password').value = '';
 }
 
-function cancelChangePassword(){
+function saveNewPassword() {
+  const newPassword = document.getElementById('profile_new_password').value;
+  if (!newPassword) {
+    alert('Please enter a new password');
+    return;
+  }
+  
+  const profile = JSON.parse(localStorage.getItem('aisports_profile') || '{}');
+  profile.password = newPassword;
+  localStorage.setItem('aisports_profile', JSON.stringify(profile));
+  
+  document.getElementById('changePwdRow').style.display = 'none';
+  document.getElementById('profile_new_password').value = '';
+  
+  alert('Password changed successfully');
+}
+
+function cancelChangePassword() {
   document.getElementById('changePwdRow').style.display = 'none';
   document.getElementById('profile_new_password').value = '';
 }
 
-function saveNewPassword(){
-  const np = document.getElementById('profile_new_password').value;
-  if(!np) { alert('Enter new password'); return; }
-  const profile = JSON.parse(localStorage.getItem('aisports_profile') || 'null') || {};
-  profile.password = np;
-  localStorage.setItem('aisports_profile', JSON.stringify(profile));
-  document.getElementById('profile_password').value = maskPassword(np);
-  cancelChangePassword();
-  document.getElementById('profile_msg').textContent = 'Password updated.';
-  setTimeout(()=>document.getElementById('profile_msg').textContent = '', 2200);
+function createPost() {
+  const caption = document.getElementById('postCaption').value;
+  const file = document.getElementById('postFile').files[0];
+  
+  if (!caption && !file) {
+    alert('Please add a caption or media file');
+    return;
+  }
+  
+  const postsContainer = document.getElementById('postsContainer');
+  const postDiv = document.createElement('div');
+  postDiv.className = 'post';
+  
+  let content = `
+    <div class="meta">
+      <strong>You</strong>
+      <span class="muted">Just now</span>
+    </div>
+    <p>${caption}</p>`;
+  
+  if (file) {
+    if (file.type.startsWith('image/')) {
+      content += `<img src="${URL.createObjectURL(file)}" alt="Post image">`;
+    } else if (file.type.startsWith('video/')) {
+      content += `<video controls><source src="${URL.createObjectURL(file)}" type="${file.type}"></video>`;
+    }
+  }
+  
+  content += `
+    <div class="actions">
+      <button>Like</button>
+      <button>Comment</button>
+      <button>Share</button>
+    </div>`;
+  
+  postDiv.innerHTML = content;
+  postsContainer.prepend(postDiv);
+  
+  document.getElementById('postCaption').value = '';
+  document.getElementById('postFile').value = '';
 }
 
-/* ---------------------------
-   Small init / load
-   --------------------------- */
-window.addEventListener('load', ()=>{
+window.addEventListener('load', () => {
   loadVideos();
   loadPlayers();
   const profile = JSON.parse(localStorage.getItem('aisports_profile') || 'null');
-  if(profile && profile.name){
+  if (profile && profile.name) {
     document.getElementById('welcome').textContent = 'Hi, ' + profile.name;
     document.getElementById('welcome').style.display = 'block';
     document.getElementById('authBtn').style.display = 'none';
@@ -921,16 +1240,11 @@ window.addEventListener('load', ()=>{
   }
   populateProfileIntoSettings();
 
-  // language
   const lang = localStorage.getItem('aisports_lang') || 'en';
   document.getElementById('langSelect').value = lang;
   applyTranslations(lang);
-
-  // initial side image
-  updateSideForSection('home');
 });
 
-/* expose showSection to window for inline onclicks */
 window.showSection = showSection;
 window.openAuth = openAuth;
 window.closeAuth = closeAuth;
@@ -944,6 +1258,10 @@ window.startChangePassword = startChangePassword;
 window.saveNewPassword = saveNewPassword;
 window.cancelChangePassword = cancelChangePassword;
 window.createPost = createPost;
+window.performSportsSearch = performSportsSearch;
+window.seeAllVideos = seeAllVideos;
+window.seeAllJourney = seeAllJourney;
+window.registerTournament = registerTournament;
 </script>
 </body>
 </html>
